@@ -10,7 +10,7 @@ export class CrewComponent implements OnInit {
   crew: object[] = [
     {name: "Eileen Collins", firstMission: false},
     {name: "Mae Jemison", firstMission: false},
-    {name: "Ellen Ochoa", firstMission: true}
+    {name: "Ellen Ochoa", firstMission: true},
   ];
   memberBeingEdited: object = null;
   constructor() { }
@@ -18,8 +18,16 @@ export class CrewComponent implements OnInit {
   ngOnInit() {
   }
   add(memberName: string, isFirst: boolean) {
-  this.crew.push({name: memberName, firstMission: isFirst});
-  
+      let memberAlreadyIncluded = false 
+    for(let i=0;i<this.crew.length;i++){
+    if(this.crew[i].name === memberName){
+      memberAlreadyIncluded = true 
+    }
+    
+    }
+  if(!memberAlreadyIncluded){
+     this.crew.push({name: memberName, firstMission: isFirst});
+  }
 }
 remove(member: object) {
   let index = this.crew.indexOf(member);
